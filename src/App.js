@@ -87,15 +87,9 @@ function App() {
            <Route
       path="about"
       element={
-<<<<<<< HEAD
      
            <About/>
        
-=======
-        
-           <About/>
-      
->>>>>>> f6cb35347a4061cbb1e0584e8c7929c60b2ec261
         
         
         
