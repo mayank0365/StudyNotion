@@ -117,12 +117,18 @@ function Navbar(){
                           >
                             {link.title}
                           </p>
+
                         </Link>
+
                       )}
+                      
                     </li>
+                    
                   ))}
+
                 </ul>
               </nav>
+              
         {/* {Login/signup/dashboard} */}
 
         <div className='flex gap-x-4 items-center'>
