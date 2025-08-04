@@ -8,10 +8,19 @@ exports.auth=async(req,res,next)=>{
    // console.log("auth middleware hit")
     try{
         //extract token
-        const authHeader=req.header("Authorization");
-        const token=req.cookies.token
-                      || req.body.token
-                      || (authHeader && authHeader.replace("Bearer ",""));
+        // const authHeader=req.header("Authorization");
+        // const token=req.cookies.token
+        //               || req.body.token
+        //               || (authHeader && authHeader.replace("Bearer ",""));
+        const authHeader = req.headers.authorization;
+
+    // Check if header exists and starts with "Bearer"
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ success: false, message: "Authorization header missing or invalid" });
+    }
+
+    // Extract the token from "Bearer <token>"
+    const token = authHeader.split(" ")[1];
 
         console.log("extracted token:", token)
 
