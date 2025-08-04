@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiEdit2 } from "react-icons/fi"
 import { RiDeleteBin6Line } from "react-icons/ri"
+import { formatDate } from '../../../../services/formatDate';
 
 export default function CourseTable({courses,setCourses}){
     
@@ -74,7 +75,7 @@ export default function CourseTable({courses,setCourses}){
                     <p className="text-lg font-semibold text-richblack-5">
                         {course.courseName}</p>
                                     <p className="text-xs text-richblack-300">{course.courseDescription}</p>
-                                    <p className="text-[12px] text-white">Created:</p>
+                                    <p className="text-[12px] text-white">Created:{formatDate(course.createdAt)}</p>
                                     {
                                         course.status===COURSE_STATUS.DRAFT ?(
                                             <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">DRAFTED</p>
