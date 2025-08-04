@@ -100,11 +100,11 @@ const MyProfile = () => {
         <p className="text-sm font-medium text-richblack-5">{user?.lastName}</p>
       </div>
        <div>
-        <p>Phone Number</p>
+        <p className="mb-2 text-sm text-richblack-600">Phone Number</p>
         <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.contactNumber ?? "Add Contact Number"}</p>
       </div>
        <div>
-        <p>Date Of Birth</p>
+        <p className="mb-2 text-sm text-richblack-600">Date Of Birth</p>
         <p className="text-sm font-medium text-richblack-5">{formattedDate(user?.additionalDetails?.dateOfBirth) ?? "Add Date of Birth"}</p>
       </div>
       </div>
