@@ -25,7 +25,7 @@ const fileUpload=require("express-fileupload");
  app.use(cookieParser());
  app.use(
     cors({
-        origin:"http://localhost:3000",
+        origin:"https://study-notion-2rqi.vercel.app",
         credentials:true,
     })
  )
