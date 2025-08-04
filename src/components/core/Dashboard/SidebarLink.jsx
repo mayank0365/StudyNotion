@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { matchPath, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { NavLink } from 'react-router-dom';
+import { resetCourseState } from '../../../slices/courseSlice';
 
 const SidebarLink = ({link,iconName}) => {
 
@@ -18,6 +19,7 @@ const SidebarLink = ({link,iconName}) => {
   return (
     <NavLink
     to={link.path}
+    onClick={()=>dispatch(resetCourseState())}
     className={ ` realtive px-8 py-2 text-sm font-medium ${matchRoute(link.path)? "bg-yellow-800 text-yellow-50" : "bg-opacity-0 text-richblack-300"} transition-all duration-200`}
     
     >
