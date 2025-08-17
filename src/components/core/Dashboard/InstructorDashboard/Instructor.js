@@ -22,11 +22,11 @@ const Instructor = () => {
             console.log("instructor apit data>>>>>>>>>",instructorApiData);
             console.log("instuctor result",result);
 
-            if(instructorApiData.length)
-                setInstructorData(instructorApiData);
+            if(instructorApiData?.data)
+                setInstructorData(instructorApiData.data);
 
-            if(result?.data) {
-                setCourses(result.data);give 
+            if(result?.data?.data) {
+                setCourses(result.data.data);
             }
             setLoading(false);
         }
