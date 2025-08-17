@@ -20,12 +20,13 @@ const Instructor = () => {
             const result = await fetchInstructorCourses(token);
 
             console.log("instructor apit data>>>>>>>>>",instructorApiData);
+            console.log("instuctor result",result);
 
             if(instructorApiData.length)
                 setInstructorData(instructorApiData);
 
-            if(result) {
-                setCourses(result);
+            if(result?.data) {
+                setCourses(result.data);give 
             }
             setLoading(false);
         }
