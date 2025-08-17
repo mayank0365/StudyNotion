@@ -1,5 +1,12 @@
+const {Mongoose}=require("mongoose");
 const Category=require("../models/Category");
 //create tag ka handler function
+
+function getRandomInt(max){
+    return Math.floor(Math.random()*max)
+}
+
+
 
 exports.createCategory=async(req,res)=>{
     try{
@@ -68,15 +75,22 @@ exports.categoryPageDetails=async(req,res)=>{
           //getcategory id
 
           const {categoryId}=req.body;
+          console.log("categoryid",categoryId);
           //get courses for specified categoryi if
   
           const selectedCategory=await Category.findById(categoryId)
                                                                .populate({
                                                                 path:"courses",
                                                                 match:{ status: "Published"},
-                                                                populate: "ratingAndReviews",
+                                                                populate:[
+                                                                    {path:"instructor" , select: "firstName lastName image" },
+                                                                    {path:"ratingAndReviews"}
+                                                                ] 
                                                                })
                                                                .exec();
+
+console.log("Selected Category:", JSON.stringify(selectedCategory, null, 2));
+
           //validation
           if(!selectedCategory){
             return res.status(404).json({
@@ -108,9 +122,13 @@ exports.categoryPageDetails=async(req,res)=>{
             .populate({
                 path: "courses",
                 match: { status: "Published"},
+                populate:{path:"instructor", select: "firstName lastName image" }
 
             })
             .exec()
+            console.log("Different Categories:", JSON.stringify(differentCategories, null, 2));
+           //console.log("Most Selling Courses:", JSON.stringify(mostSellingCourses, null, 2));
+
           //get top selling courses
               const allCategories = await Category.find()
                    .populate({

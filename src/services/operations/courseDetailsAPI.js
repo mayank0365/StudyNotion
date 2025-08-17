@@ -328,14 +328,17 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
     )
     console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response)
 
-    if (!response.data.success) {
+    if (!response?.data?.success) {
       throw new Error(response.data.message)
     }
-    result = response?.data?.data
-    console.log(result);
+    result = response.data.data
+  console.log(
+      "COURSE_FULL_DETAILS_API DATA............",
+      JSON.stringify(result, null, 2)
+    );
   } catch (error) {
     console.log("COURSE_FULL_DETAILS_API API ERROR............", error)
-    result = error.response.data
+    result = error?.response?.data
     // toast.error(error.response.data.message);
   }
   toast.dismiss(toastId)
