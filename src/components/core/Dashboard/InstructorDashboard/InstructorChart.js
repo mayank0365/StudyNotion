@@ -23,11 +23,11 @@ const InstructorChart = ({courses}) => {
     //create data for chart displaying student info
 
     const chartDataForStudents = {
-        labels: courses.map((course)=> course.courseName),
+        labels: courses?.map((course)=> course.courseName),
         datasets: [
             {
-                data: courses.map((course)=> course.totalStudentsEnrolled),
-                backgroundColor: getRandomColors(courses.length),
+                data: courses?.map((course)=> course.totalStudentsEnrolled),
+                backgroundColor: getRandomColors(courses?.length),
             }
         ]
     }
@@ -35,10 +35,10 @@ const InstructorChart = ({courses}) => {
 
     //create data for chart displaying iincome info
     const chartDataForIncome = {
-        labels:courses.map((course)=> course.courseName),
+        labels:courses?.map((course)=> course.courseName),
         datasets: [
             {
-                data: courses.map((course)=> course.totalAmountGenerated),
+                data: courses?.map((course)=> course.totalAmountGenerated),
                 backgroundColor: getRandomColors(courses.length),
             }
         ]
@@ -46,9 +46,30 @@ const InstructorChart = ({courses}) => {
 
 
     //create options
-    const options = {
+   const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "bottom",
+      labels: {
+        font: {
+          size: 12
+        }
+      }
+    },
+    title: {
+      display: true,
+      text: currChart === "students" 
+        ? "Students Enrolled Per Course"
+        : "Income Generated Per Course",
+      font: {
+        size: 16
+      }
+    }
+  }
+};
 
-    };
 
 
   return (
