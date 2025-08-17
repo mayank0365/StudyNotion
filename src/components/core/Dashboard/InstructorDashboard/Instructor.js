@@ -25,8 +25,8 @@ const Instructor = () => {
             if(instructorApiData?.data)
                 setInstructorData(instructorApiData.data);
 
-            if(result?.data?.data) {
-                setCourses(result.data.data);
+            if(result) {
+                setCourses(result);
             }
             setLoading(false);
         }
