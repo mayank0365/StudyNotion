@@ -13,22 +13,44 @@ export default function Instructor() {
     const [courses, setCourses] = useState([])
   
     useEffect(() => {
-      ;(async () => {
-        setLoading(true)
-        const instructorApiData = await getInstructorData(token)
-        const result = await fetchInstructorCourses(token)
-        console.log("instrucctorapidata->",instructorApiData)
-if (Array.isArray(instructorApiData)) {
-  setInstructorData(instructorApiData)
-} else if (Array.isArray(instructorApiData?.data)) {
-  setInstructorData(instructorApiData.data)
-}
-        if (result) {
-          setCourses(result)
+    (async () => {
+      try {
+        setLoading(true);
+
+        // Run both APIs in parallel
+        const [instructorApiData, result] = await Promise.all([
+          getInstructorData(token),
+          fetchInstructorCourses(token),
+        ]);
+
+        console.log("INSTRUCTOR API DATA ->", instructorApiData);
+        console.log("COURSES API RESULT ->", result);
+
+        // Handle instructor data
+        if (Array.isArray(instructorApiData)) {
+          setInstructorData(instructorApiData);
+        } else if (Array.isArray(instructorApiData?.data)) {
+          setInstructorData(instructorApiData.data);
+        } else {
+          setInstructorData([]);
         }
-        setLoading(false)
-      })()
-    }, [])
+
+        // Handle courses
+        if (Array.isArray(result)) {
+          setCourses(result);
+        } else if (Array.isArray(result?.data?.data)) {
+          setCourses(result.data.data);
+        } else {
+          setCourses([]);
+        }
+      } catch (err) {
+        console.error("Error fetching instructor dashboard data:", err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [token]);
+
   
     const totalAmount = instructorData?.reduce(
       (acc, curr) => acc + curr.totalAmountGenerated,
@@ -113,7 +135,7 @@ if (Array.isArray(instructorApiData)) {
                       </p>
                       <div className="mt-1 flex items-center space-x-2">
                         <p className="text-xs font-medium text-richblack-300">
-                          {course.studentsEnroled.length || 0} students
+                          {course.studentsEnrolled.length || 0} students
                         </p>
                         <p className="text-xs font-medium text-richblack-300">
                           |
