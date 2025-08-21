@@ -74,6 +74,11 @@ export async function getInstructorData(token) {
     })
 
     console.log("GET_INSTRUCTOR_API_RESPONSE", response);
+      // Log step by step
+    console.log("🔹 response.data:", response.data);
+    console.log("🔹 response.data.success:", response?.data?.success);
+    console.log("🔹 response.data.message:", response?.data?.message);
+    console.log("🔹 response.data.data:", response?.data?.data);
     result = response?.data?.courses
 
   }
