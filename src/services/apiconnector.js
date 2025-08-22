@@ -21,9 +21,9 @@ export const apiConnector = async (method, url, bodyData, headers, params) => {
     const response = await axiosInstance({
       method: `${method}`,
       url: `${url}`,
-      data: bodyData || null,
-      headers: headers || null,
-      params: params || null,
+      data: bodyData? bodyData : null,
+      headers: headers ? headers : null,
+      params: params ? params : null,
       withCredentials: true,
     });
 
