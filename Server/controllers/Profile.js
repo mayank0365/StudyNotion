@@ -188,11 +188,12 @@ exports.getEnrolledCourses = async (req, res) => {
 
 exports.instructorDashboard = async(req, res) => {
 	try{
-		const courseDetails = await Course.find({instructor:req.user.id});
 		console.log("req.user:",req.user);
+		const courseDetails = await Course.find({instructor:req.user.id});
+		console.log("courseDetails:",courseDetails);
 
 		const courseData  = courseDetails.map((course)=> {
-			const totalStudentsEnrolled = course.studentsEnrolled.length
+			const totalStudentsEnrolled = course?.studentsEnrolled?.length || 0;
 			const totalAmountGenerated = totalStudentsEnrolled * course.price
 
 			//create an new object with the additional fields
@@ -205,6 +206,7 @@ exports.instructorDashboard = async(req, res) => {
 			}
 			return courseDataWithStats
 		})
+		console.log("final courseData:",courseData);
 
 		res.status(200).json({courses:courseData});
 
