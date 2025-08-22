@@ -12,7 +12,7 @@ useEffect(() => {
   if (token) {
     getInstructorData(token)
       .then((res) => console.log("✅ Instructor data:", res))
-      .catch((err) => console.log("❌ getInstructorData error:", err));
+      .catch((err) => console.log("❌ getInstructorData error in details>>>>>>>>>>>>>>>>.:", err));
   }
 }, [token]);
 
