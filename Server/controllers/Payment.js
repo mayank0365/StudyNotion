@@ -6,6 +6,7 @@ const {courseEnrollmentEmail}=require("../mail/templates/courseEnrollmentEmail")
 const {default :mongoose}=require("mongoose");
 const {paymentSuccessEmail}=require("../mail/templates/paymentSuccessEmail");
 const crypto=require("crypto");
+const CourseProgress=require("../models/CourseProgress");
 
 
 //initiate the razorpay order
@@ -134,6 +135,13 @@ const enrollStudents=async(courses,userId,res)=>{
         if(!enrolledCourse){
             return res.status(500).json({success:false,message:"course not found"});
         }
+
+        
+                const courseProgress = await CourseProgress.create({
+                    courseID:courseId,
+                    userId:userId,
+                    completedVideos: [],
+                })
 
         //find the student and add the corurse to their list of enrolled courses
         const enrolledStudent= await User.findByIdAndUpdate(userId,
