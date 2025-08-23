@@ -20,7 +20,7 @@ const VideoDetails = () => {
   const { courseSectionData, courseEntireData, completedLectures } =
     useSelector((state) => state.viewCourse)
 
-  const [videoData, setVideoData] = useState([])
+  const [videoData, setVideoData] = useState(null)
   const [previewSource, setPreviewSource] = useState("")
   const [videoEnded, setVideoEnded] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -40,7 +40,7 @@ const VideoDetails = () => {
           (data) => data._id === subSectionId
         )
         // console.log("filteredVideoData", filteredVideoData)
-        setVideoData(filteredVideoData[0])
+        setVideoData(filteredVideoData?.[0] || null)
         setPreviewSource(courseEntireData.thumbnail)
         setVideoEnded(false)
       }
@@ -90,6 +90,7 @@ const VideoDetails = () => {
         `/view-course/${courseId}/section/${sectionId}/sub-section/${nextSubSectionId}`
       )
     } else {
+        
       const nextSectionId = courseSectionData[currentSectionIndx + 1]._id
       const nextSubSectionId =
         courseSectionData[currentSectionIndx + 1].subSection[0]._id
