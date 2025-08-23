@@ -136,8 +136,8 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
                                                         //             return;
                                                         //           }
                                                         if(courseEntireData?._id && course?._id && topic?._id){
-                                                            navigate(`/view-course/${courseEntireData?._id}/section/${course?._id}/sub-section/${topic?._id}`);
-                                                            setVideoBarActive(topic?._id);
+                                                            navigate(`/view-course/${courseEntireData._id}/section/${course._id}/sub-section/${topic._id}`);
+                                                            setVideoBarActive(topic._id);
                                                         }
                                                     }}
                                                     >
