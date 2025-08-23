@@ -24,8 +24,7 @@ export default function EnrolledCourses() {
     getEnrolledCourses();
   }, [])
   console.log(enrolledCourses
-    ,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-  )
+    ,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
   return (
     <>
