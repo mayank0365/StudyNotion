@@ -7,14 +7,7 @@ import { logout } from "./authAPI"
 
 const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API ,  GET_INSTRUCTOR_DATA_API} = profileEndpoints
 
-useEffect(() => {
-  console.log("🔍 useEffect triggered, token:", token);
-  if (token) {
-    getInstructorData(token)
-      .then((res) => console.log("✅ Instructor data:", res))
-      .catch((err) => console.log("❌ getInstructorData error in details>>>>>>>>>>>>>>>>.:", err));
-  }
-}, [token]);
+
 
 export function getUserDetails(token, navigate) {
   return async (dispatch) => {
