@@ -48,7 +48,7 @@ if (!sectionId || !subSectionId) {
     return; // stop here, don't try to read subSection
 }
 
-            const filteredVideoData = filteredData?.[0]?.subSection.filter(
+            const filteredVideoData = filteredData?.[0]?.subSections.filter(
                 (data) => data._id === subSectionId
             )
        
