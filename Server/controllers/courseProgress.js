@@ -8,6 +8,10 @@ exports.updateCourseProgress = async (req, res) => {
   const { courseId, subsectionId } = req.body
   const userId = req.user.id
 
+    console.log("courseid ->",courseId);
+    console.log("userId->",userId);
+
+
   try {
     // Check if the subsection is valid
     const subsection = await SubSection.findById(subsectionId)
@@ -20,6 +24,8 @@ console.log("Looking for CourseProgress with:", { courseId, userId })
       courseID: courseId,
       userId: userId,
     })
+
+  
 
     if (!courseProgress) {
       // If course progress doesn't exist, create a new one
