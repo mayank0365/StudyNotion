@@ -14,7 +14,7 @@ exports.updateCourseProgress = async (req, res) => {
     if (!subsection) {
       return res.status(404).json({ error: "Invalid subsection" })
     }
-
+console.log("Looking for CourseProgress with:", { courseId, userId })
     // Find the course progress document for the user and course
     let courseProgress = await CourseProgress.findOne({
       courseID: courseId,
