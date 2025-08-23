@@ -153,7 +153,7 @@ const enrollStudents=async(courses,userId,res)=>{
         
          //student ko mail send krdo
         const emailResponse=await mailSender(
-            enrollStudents.email,
+            enrolledStudent.email,
             `successfully enrolled into ${enrolledCourse.courseName}`,
             courseEnrollmentEmail(enrolledCourse.courseName,`${enrolledStudent.firstName}`)
 
